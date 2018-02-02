@@ -1,0 +1,84 @@
+
+
+<!DOCTYPE html>
+<html>
+<head></head>
+<title>
+
+</title>
+<script>
+
+    var username = {{username}};
+    var msg = {{ msg }};
+    var data = {{data}};
+
+</script>
+
+<body>
+    <div class="jumbotron">
+        <h6>Picture Share</h6>
+    </div>
+
+    <div class="row">
+    <form id="frmlogin" enctype="multipart/form-data" method="post" action="login">
+        <div class="col-md-4">
+
+                <table>
+                    <tr>
+                        <td><input type="text" id="txtUserName" name="txtUserName" /></td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <input type="checkbox" id="chkView" name="chkView" value="1"/>
+                        </td>
+                        <td> View Pictures</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <input type="checkbox" id="chkCreate" name="chkCreate" value="2"/>
+                        </td>
+                        <td>  Create/Modify Pictures</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <button type="submit" onclick="ShowPics()">Login</button>
+                        </td>
+                        <td>
+                            <label id="lblerrormsg"> {{msg}}</label>
+                        </td>
+                    </tr>
+                </table>
+
+        </div>
+
+       <div id="divAllPics">
+            Welcome: {{username}}
+            <table>
+                {% for item in data %}
+                <tr>
+                    <td><img src={{item[3]}} /></td>
+                    <td>{{item[3]}}</td>
+                </tr>
+                    <tr>
+                    <td>{{item[0]}}</td> <!-- title-->
+                    </tr>
+                    <tr>
+                     <td>Created Date: {{item[1]}}</td> <!-- created date-->
+                    </tr>
+                    <tr>
+                    <td># Likes: {{item[2]}}<a href="/increaselikes/{{ item[4] }}" >+</a> <!-- no of likes --></td>
+                    </tr>
+                    <tr>
+                    <td> <label id="lblerrormsg"> {{ item[4] }}</label></td> <!-- row ID -->
+                    </tr>
+                    <tr>
+                    <td style="column-span: 2">==================================================================</td>
+                    </tr>
+                {% endfor %}
+            </table>
+        </div>
+     </form>
+    </div>
+</body>
+</html>
+
